@@ -10,24 +10,24 @@ zen_list() {
 
 zen_create() {
     zen_new_env="$zen_pyenv_dir/$1"
-    if [ -d $new_env ]; then
-        echo "'$1' already exists as an environment."
+    if [ -d $zen_new_env ]; then
+        echo "'$1' already exists as an environment"
     else
-        echo Creating environment "'$1'".
+        echo Creating environment "'$1'"
         python3 -m venv "$zen_new_env"
-        echo "Finished creating environment."
+        echo "Finished creating environment"
     fi
     unset zen_new_env
 }
 
 zen_new() {
     zen_new_env="$zen_pyenv_dir/$1"
-    if [ -d $new_env ]; then
-        echo "'$1' already exists as an environment."
+    if [ -d $zen_new_env ]; then
+        echo "'$1' already exists as an environment"
     else
-        echo Creating environment "'$1'".
+        echo Creating environment "'$1'"
         python3 -m venv "$zen_new_env"
-        echo "Finished creating environment."
+        echo "Finished creating environment"
         zen_use $1
     fi
     unset zen_new_env
@@ -37,9 +37,9 @@ zen_remove() {
     zen_new_env="$zen_pyenv_dir/$1"
     if [ -d $zen_new_env ]; then
         rm -r $zen_new_env
-        echo "Removed $1."
+        echo "Removed $1"
     else
-        echo "Environment '$1' does not exist."
+        echo "Environment '$1' does not exist"
     fi
     unset zen_new_env
 }
@@ -48,9 +48,9 @@ zen_use() {
     zen_new_env="$zen_pyenv_dir/$1"
     if [ -d $zen_new_env ]; then
         source "$zen_new_env"/bin/activate
-        echo "Using '$1'."
+        echo "Using '$1'"
     else
-        echo "Environment '$1' does not exist."
+        echo "Environment '$1' does not exist"
     fi
     unset zen_new_env
 }
