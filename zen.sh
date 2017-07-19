@@ -84,11 +84,11 @@ elif [ $# -eq 2 ]; then
     if [ "$1" = "create" ]; then
         zen_create $2
     elif [ "$1" = "new" ]; then
-        zen_new $1
+        zen_new $2
     elif [ "$1" = "remove" ]; then
         zen_remove $2
     elif [ "$1" = "use" ]; then
-        zen_use $1
+        zen_use $2
     else
         echo "Invalid arguments '$1 $2'"
     fi
