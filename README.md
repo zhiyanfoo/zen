@@ -30,3 +30,6 @@ script is run, it will unset all the following variables.
 * zen_use
 * zen_use_else_create
 * zen_new_env
+
+## python2
+See zen2 branch
