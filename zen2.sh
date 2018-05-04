@@ -14,7 +14,7 @@ zen2_create() {
         echo "'$1' already exists as an environment"
     else
         echo Creating environment "'$1'"
-        python3 -m venv "$zen2_new_env"
+        virtualenv "$zen2_new_env"
         echo "Finished creating environment"
     fi
     unset zen2_new_env
@@ -26,7 +26,7 @@ zen2_new() {
         echo "'$1' already exists as an environment"
     else
         echo Creating environment "'$1'"
-        python3 -m venv "$zen2_new_env"
+        virtualenv "$zen2_new_env"
         echo "Finished creating environment"
         zen2_use $1
     fi
