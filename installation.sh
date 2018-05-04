@@ -1,27 +1,27 @@
-zen_pyenv_dir="$HOME/.zen"
+zen2_pyenv_dir="$HOME/.zen2"
 
-if [ -e $zen_pyenv_dir ]; then
-    echo "$zen_pyenv_dir already exists."
-    echo "If $zen_pyenv_dir is used for another program."
-    echo "modify first line in zen.sh and this installation script"
-    echo "zen_pyenv_dir=\"$HOME/.zen\""
+if [ -e $zen2_pyenv_dir ]; then
+    echo "$zen2_pyenv_dir already exists."
+    echo "If $zen2_pyenv_dir is used for another program."
+    echo "modify first line in zen2.sh and this installation script"
+    echo "zen2_pyenv_dir=\"$HOME/.zen2\""
     echo "change it to a new directory"
     echo "then run this installation script again"
     exit 1
 else
-    echo "Creating '$zen_pyenv_dir'"
-    mkdir $zen_pyenv_dir
+    echo "Creating '$zen2_pyenv_dir'"
+    mkdir $zen2_pyenv_dir
 fi
 
-if [ -e "/usr/local/bin/zen" ]; then
-    echo "zen already exists in /usr/local/bin"
+if [ -e "/usr/local/bin/zen2" ]; then
+    echo "zen2 already exists in /usr/local/bin"
 else
-    cp $HOME/tools/zen/zen.sh /usr/local/bin/zen
+    cp $HOME/tools/zen/zen2.sh /usr/local/bin/zen2
 fi
 
 echo "You have to manually create alias"
-echo "'alias zen=\"source /usr/local/bin/zen.sh\"'"
+echo "'alias zen2=\"source /usr/local/bin/zen2.sh\"'"
 echo "in bash_profile, zshrc or .aliases"
 echo "or something like the above."
 
-unset zen_pyenv_dir
+unset zen2_pyenv_dir
