@@ -1,5 +1,13 @@
 # **ZEN** - Zhiyan's python3 ENviroment manager
 
+## Important
+
+zen must be run with `source` instead of directly, i.e. with `./`. So add the
+following alias to your shell configuration file, e.g.
+zshrc/bashrc/bash_profile.
+
+`alias zen="source /usr/local/bin/zen"`
+
 ## Commands
 * `zen`: list environments
 * `zen dir`: prints the directory environments are stored in.
