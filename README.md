@@ -1,5 +1,13 @@
 # **ZEN2** - Zhiyan's python2 ENviroment manager
 
+## Important
+
+zen2 must be run with `source` instead of directly, i.e. with `./`. So add the
+following alias to your shell configuration file, e.g.
+zshrc/bashrc/bash_profile.
+
+`alias zen2="source /usr/local/bin/zen2"`
+
 ## Commands
 * `zen2`: list environments
 * `zen2 dir`: prints the directory environments are stored in.
@@ -30,3 +38,6 @@ script is run, it will unset all the following variables.
 * zen2_use
 * zen2_use_else_create
 * zen2_new_env
+
+## python3
+See zen branch
