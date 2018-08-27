@@ -1,11 +1,50 @@
 zen_pyenv_dir="$HOME/.zen"
+zen2_pyenv_dir="$HOME/.zen2"
 
 zen_list() {
     if [ "$(ls -A $zen_pyenv_dir)" ]; then
         ls -1 $zen_pyenv_dir 
     else
-        echo "No environment in $zen_pyenv_dir, to create one run 'zen MY_NEW_ENV'"
+        echo "No environments in $zen_pyenv_dir, to create one run 'zen MY_NEW_ENV'"
     fi
+}
+
+zen_help() {
+    cat <<LimitString
+usage: zen [ -h | --help] [<command>] [<env>] [virtualenv_options]
+
+Most common operations.
+
+  zen: list environments
+
+  zen ENV_NAME [virtualenv_options]: Creates ENV_NAME if ENV_NAME does not
+                                     exist, else uses it.
+
+Other operations
+
+  zen [-h | --help | help]: prints help
+
+  zen create ENV_NAME [virtualenv_options]: Creates ENV_NAME
+
+  zen dir: prints the directory environments are stored in
+
+  zen new ENV_NAME [virtualenv_options]: Like *create* but uses the environment
+                                         afterwards
+
+  zen remove ENV_NAME: Removes environment
+
+  zen use: activates environment.
+
+  [virtualenv_options]: you can pass virtualenv options to zen and zen will
+                        pass them down to the virtualenv it calls internally
+
+                        Example:
+                          zen create my_new_env --python 3.4
+
+Once you are in an enviroment you can deactivate it using the command
+deactivate (without zen prefixed) -- this a virtualenv command, not implemented
+by zen.
+LimitString
 }
 
 zen_create() {
@@ -72,29 +111,26 @@ fi
 
 if [ $# -eq 0 ]; then
     zen_list
-elif [ $# -eq 1 ]; then
-    if [ "$1" = "zen_list" ]; then
-        zen_list
-    elif [ "$1" = "dir" ]; then
-        echo $zen_pyenv_dir
-    else
-        zen_use_else_create $1
-    fi
-elif [ $# -eq 2 ]; then
-    if [ "$1" = "create" ]; then
-        zen_create $2
-    elif [ "$1" = "new" ]; then
-        zen_new $2
-    elif [ "$1" = "remove" ]; then
-        zen_remove $2
-    elif [ "$1" = "use" ]; then
-        zen_use $2
-    else
-        echo "Invalid arguments '$1 $2'"
-    fi
+elif [ "$1" = "list" ]; then
+    zen_list
+elif [ "$1" = "dir" ]; then
+    echo $zen_pyenv_dir
+elif [ "$1" = "-h" ] || [ "$1" = "--help" ] || [ "$1" = "help" ]; then
+    zen_help
+elif [ "$1" = "create" ]; then
+    zen_create $2
+elif [ "$1" = "new" ]; then
+    zen_new $2
+elif [ "$1" = "remove" ]; then
+    zen_remove $2
+elif [ "$1" = "use" ]; then
+    zen_use $2
+else
+    zen_use_else_create $1
 fi
 
 unset zen_pyenv_dir
+unset zen_pyenv_dir2
 unset zen_list
 unset zen_create
 unset zen_remove
