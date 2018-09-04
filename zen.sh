@@ -53,7 +53,8 @@ zen_create() {
         echo "'$1' already exists as an environment"
     else
         echo Creating environment "'$1'"
-        python3 -m venv "$zen_new_env"
+        echo "$zen_new_env" ${@:2}
+        virtualenv "$zen_new_env" ${@:2}
         echo "Finished creating environment"
     fi
     unset zen_new_env
@@ -64,9 +65,7 @@ zen_new() {
     if [ -d $zen_new_env ]; then
         echo "'$1' already exists as an environment"
     else
-        echo Creating environment "'$1'"
-        python3 -m venv "$zen_new_env"
-        echo "Finished creating environment"
+        zen_create $@
         zen_use $1
     fi
     unset zen_new_env
@@ -99,7 +98,7 @@ zen_use_else_create() {
     if [ -d $zen_new_env ]; then
         zen_use $1
     else
-        zen_create $1
+        zen_create $@
     fi
     unset zen_new_env
 }
@@ -119,31 +118,34 @@ main() {
     elif [ "$1" = "-h" ] || [ "$1" = "--help" ] || [ "$1" = "help" ]; then
         zen_help
     elif [ "$1" = "create" ]; then
-        zen_create $2
+        zen_create ${@:2}
     elif [ "$1" = "new" ]; then
-        zen_new $2
+        zen_new ${@:2}
     elif [ "$1" = "remove" ]; then
         zen_remove $2
     elif [ "$1" = "use" ]; then
         zen_use $2
     else
-        zen_use_else_create $1
+        zen_use_else_create $@
     fi
 }
 
+zen_basename=$(basename "$0")
 
-if [ "$0" = "zen" ]; then
+if [ $zen_basename = "zen" ]; then
     zen_pyenv_dir="$HOME/.zen"
-elif [ "$0" = "zen2" ]; then
+elif [ $zen_basename = "zen2" ]; then
     zen_pyenv_dir="$HOME/.zen2"
 else
     echo "Name of executable must be 'zen' or 'zen2'"
-    echo "Currently it is '$0'"
+    echo "Currently it is '$zen_basename'"
     return 1
 fi
 
 main $@
 
+
+unset zen_basename
 unset zen_pyenv_dir
 unset zen_pyenv_dir2
 unset zen_list
