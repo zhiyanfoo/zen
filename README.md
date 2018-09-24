@@ -42,20 +42,3 @@ The script will attempt the two following simple tasks.
   directory that zen uses, you have to change the line
   `zen_pyenv_dir="$HOME/.zen"` to whatever you prefer.
 * copy zen to /usr/local/bin.
-
-## Caveats
-
-Because this is script needs to be run using `source`, it will overwrite the
-following variables if they already defined in the shell session. But once the
-script is run, it will unset all the following variables.
-
-* zen_pyenv_dir
-* zen_list
-* zen_create
-* zen_remove
-* zen_use
-* zen_use_else_create
-* zen_new_env
-
-## python2
-See zen2 branch
