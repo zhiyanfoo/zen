@@ -1,5 +1,4 @@
 zen_pyenv_dir="$HOME/.zen"
-zen2_pyenv_dir="$HOME/.zen2"
 
 zen_list() {
     if [ "$(ls -A $zen_pyenv_dir)" ]; then
@@ -11,35 +10,27 @@ zen_list() {
 
 zen_help() {
     cat <<LimitString
-usage: zen [ -h | --help] [<command>] [<env>] [virtualenv_options]
+usage: zen [ -h | --help] [<command>] [<env>]
 
 Most common operations.
 
   zen: list environments
 
-  zen ENV_NAME [virtualenv_options]: Creates ENV_NAME if ENV_NAME does not
-                                     exist, else uses it.
+  zen ENV_NAME: Creates ENV_NAME if ENV_NAME does not exist, else uses it.
 
 Other operations
 
   zen [-h | --help | help]: prints help
 
-  zen create ENV_NAME [virtualenv_options]: Creates ENV_NAME
+  zen create ENV_NAME: Creates ENV_NAME
 
   zen dir: prints the directory environments are stored in
 
-  zen new ENV_NAME [virtualenv_options]: Like *create* but uses the environment
-                                         afterwards
+  zen new ENV_NAME: Like *create* but uses the environment afterwards
 
   zen remove ENV_NAME: Removes environment
 
   zen use: activates environment.
-
-  [virtualenv_options]: you can pass virtualenv options to zen and zen will
-                        pass them down to the virtualenv it calls internally
-
-                        Example:
-                          zen create my_new_env --python 3.4
 
 Once you are in an enviroment you can deactivate it using the command
 deactivate (without zen prefixed) -- this a virtualenv command, not implemented
@@ -54,7 +45,7 @@ zen_create() {
     else
         echo Creating environment "'$1'"
         echo "$zen_new_env" ${@:2}
-        virtualenv "$zen_new_env" ${@:2}
+        python3 -m venv "$zen_new_env" ${@:2}
         echo "Finished creating environment"
     fi
     unset zen_new_env
@@ -130,22 +121,9 @@ main() {
     fi
 }
 
-zen_basename=$(basename "$0")
-
-if [ $zen_basename = "zen" ]; then
-    zen_pyenv_dir="$HOME/.zen"
-elif [ $zen_basename = "zen2" ]; then
-    zen_pyenv_dir="$HOME/.zen2"
-else
-    echo "Name of executable must be 'zen' or 'zen2'"
-    echo "Currently it is '$zen_basename'"
-    return 1
-fi
-
 main $@
 
 
-unset zen_basename
 unset zen_pyenv_dir
 unset zen_pyenv_dir2
 unset zen_list
