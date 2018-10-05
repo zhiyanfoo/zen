@@ -44,8 +44,11 @@ zen2_create() {
         echo "'$1' already exists as an environment"
     else
         echo Creating environment "'$1'"
-        echo "$zen2_new_env" ${@:2}
-        virtualenv "$zen2_new_env" ${@:2}
+        echo "$zen2_new_env"
+        zen2_current_dir="$(pwd)"
+        cd "$zen2_new_env"
+        virtualenv "$1"
+        cd "$zen2_current_dir"
         echo "Finished creating environment"
     fi
     unset zen2_new_env
