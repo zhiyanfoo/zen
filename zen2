@@ -16,7 +16,7 @@ Most common operations.
 
   zen2: list environments
 
-  zen2 ENV_NAME: Creates ENV_NAME if ENV_NAME does not exist, else uses it.
+  zen2 ENV_NAME: Creates and uses ENV_NAME if ENV_NAME does not exist, else uses it.
 
 Other operations
 
@@ -87,12 +87,12 @@ zen2_use() {
     unset zen2_new_env
 }
 
-zen2_use_else_create() {
+zen2_use_else_new() {
     zen2_new_env="$zen2_pyenv_dir/$1"
     if [ -d $zen2_new_env ]; then
         zen2_use $1
     else
-        zen2_create $@
+        zen2_new $@
     fi
     unset zen2_new_env
 }
@@ -108,7 +108,7 @@ main() {
     elif [ "$1" = "list" ]; then
         zen2_list
     elif [ "$1" = "dir" ]; then
-        echo $zen2_pyenv_dir
+        echo "$zen2_pyenv_dir"
     elif [ "$1" = "-h" ] || [ "$1" = "--help" ] || [ "$1" = "help" ]; then
         zen2_help
     elif [ "$1" = "create" ]; then
@@ -120,7 +120,7 @@ main() {
     elif [ "$1" = "use" ]; then
         zen2_use $2
     else
-        zen2_use_else_create $@
+        zen2_use_else_new $@
     fi
 }
 
@@ -136,4 +136,4 @@ unset zen2_create
 unset zen2_remove
 unset zen2_use
 unset zen2_new
-unset zen2_use_else_create
+unset zen2_use_else_new
