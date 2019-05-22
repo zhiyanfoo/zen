@@ -1,0 +1,139 @@
+zen2_pyenv_dir="$HOME/.zen2"
+
+zen2_list() {
+    if [ "$(ls -A $zen2_pyenv_dir)" ]; then
+        ls -1 $zen2_pyenv_dir 
+    else
+        echo "No environments in $zen2_pyenv_dir, to create one run 'zen2 MY_NEW_ENV'"
+    fi
+}
+
+zen2_help() {
+    cat <<LimitString
+usage: zen2 [ -h | --help] [<command>] [<env>]
+
+Most common operations.
+
+  zen2: list environments
+
+  zen2 ENV_NAME: Creates and uses ENV_NAME if ENV_NAME does not exist, else uses it.
+
+Other operations
+
+  zen2 [-h | --help | help]: prints help
+
+  zen2 create ENV_NAME: Creates ENV_NAME
+
+  zen2 dir: prints the directory environments are stored in
+
+  zen2 new ENV_NAME: Like *create* but uses the environment afterwards
+
+  zen2 remove ENV_NAME: Removes environment
+
+  zen2 use: activates environment.
+
+Once you are in an enviroment you can deactivate it using the command
+deactivate (without zen2 prefixed) -- this a virtualenv command, not implemented
+by zen2.
+LimitString
+}
+
+zen2_create() {
+    zen2_new_env="$zen2_pyenv_dir/$1"
+    if [ -d $zen2_new_env ]; then
+        echo "'$1' already exists as an environment"
+    else
+        echo Creating environment "'$1'"
+        echo "$zen2_new_env"
+        zen2_current_dir="$(pwd)"
+        cd "$zen2_new_env"
+        virtualenv "$1"
+        cd "$zen2_current_dir"
+        echo "Finished creating environment"
+    fi
+    unset zen2_new_env
+}
+
+zen2_new() {
+    zen2_new_env="$zen2_pyenv_dir/$1"
+    if [ -d $zen2_new_env ]; then
+        echo "'$1' already exists as an environment"
+    else
+        zen2_create $@
+        zen2_use $1
+    fi
+    unset zen2_new_env
+}
+
+zen2_remove() {
+    zen2_new_env="$zen2_pyenv_dir/$1"
+    if [ -d $zen2_new_env ]; then
+        rm -r $zen2_new_env
+        echo "Removed $1"
+    else
+        echo "Environment '$1' does not exist"
+    fi
+    unset zen2_new_env
+}
+
+zen2_use() {
+    zen2_new_env="$zen2_pyenv_dir/$1"
+    if [ -d $zen2_new_env ]; then
+        source "$zen2_new_env"/bin/activate
+        echo "Using '$1'"
+    else
+        echo "Environment '$1' does not exist"
+    fi
+    unset zen2_new_env
+}
+
+zen2_use_else_new() {
+    zen2_new_env="$zen2_pyenv_dir/$1"
+    if [ -d $zen2_new_env ]; then
+        zen2_use $1
+    else
+        zen2_new $@
+    fi
+    unset zen2_new_env
+}
+
+main() {
+    if [ ! -d $zen2_pyenv_dir ]; then
+        echo "Creating '$zen2_pyenv_dir'"
+        mkdir $zen2_pyenv_dir
+    fi
+
+    if [ $# -eq 0 ]; then
+        zen2_list
+    elif [ "$1" = "list" ]; then
+        zen2_list
+    elif [ "$1" = "dir" ]; then
+        echo "$zen2_pyenv_dir"
+    elif [ "$1" = "-h" ] || [ "$1" = "--help" ] || [ "$1" = "help" ]; then
+        zen2_help
+    elif [ "$1" = "create" ]; then
+        zen2_create ${@:2}
+    elif [ "$1" = "new" ]; then
+        zen2_new ${@:2}
+    elif [ "$1" = "remove" ]; then
+        zen2_remove $2
+    elif [ "$1" = "use" ]; then
+        zen2_use $2
+    else
+        zen2_use_else_new $@
+    fi
+}
+
+zen2_basename=$(basename "$0")
+
+main $@
+
+unset zen2_basename
+unset zen2_pyenv_dir
+unset zen2_pyenv_dir2
+unset zen2_list
+unset zen2_create
+unset zen2_remove
+unset zen2_use
+unset zen2_new
+unset zen2_use_else_new
