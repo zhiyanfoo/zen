@@ -22,15 +22,25 @@ Once you are in an enviroment you can deactivate it using the command `deactivat
 prefixed) -- this a virtualenv thing.
 
 
-## Important
+## Installation
 
-zen must be run with `source` instead of directly, i.e. with `./`. So add the
-following alias to your shell configuration file, e.g.
+# Example installation steps for mac osx
+
+```
+git clone https://github.com/zhiyanfoo/zen.git zen
+cd zen
+./installation.sh
+echo 'alias zen="source /usr/local/bin/zen.sh"' >> $HOME/.bash_profile
+```
+
+# Notes
+
+zen must be run with `source` instead of directly, i.e. with `./`.
+Which is why we add the following alias to your shell configuration file, e.g.
 zshrc/bashrc/bash_profile.
 
 `alias zen="source /usr/local/bin/zen"`
 
-## Installation
 The script will attempt the two following simple tasks.
 * Create ".zen" directory in user's home folder. To change the default
   directory that zen uses, you have to change the line
