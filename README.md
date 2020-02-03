@@ -28,7 +28,7 @@ zen must be run with `source` instead of directly, i.e. with `./`. So add the
 following alias to your shell configuration file, e.g.
 zshrc/bashrc/bash_profile.
 
-`alias zen="source /usr/local/bin/zen"`
+`alias zen="source /usr/local/bin/zen.sh"`
 
 ## Installation
 The script will attempt the two following simple tasks.
