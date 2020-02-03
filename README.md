@@ -24,7 +24,7 @@ prefixed) -- this a virtualenv thing.
 
 ## Installation
 
-# Example installation steps for mac osx
+# Example installation steps
 
 ```
 git clone https://github.com/zhiyanfoo/zen.git zen
