@@ -1,0 +1,305 @@
+# The configurations that used for the recording, feel free to edit them
+config:
+
+  # Specify a command to be executed
+  # like `/bin/bash -l`, `ls`, or any other commands
+  # the default is bash for Linux
+  # or powershell.exe for Windows
+  command: bash -l
+  
+  # Specify the current working directory path
+  # the default is the current working directory path
+  cwd: /Users/zhiyan/tools/zen
+  
+  # Export additional ENV variables
+  env:
+    recording: true
+  
+  # Explicitly set the number of columns
+  # or use `auto` to take the current
+  # number of columns of your shell
+  cols: 65
+  
+  # Explicitly set the number of rows
+  # or use `auto` to take the current
+  # number of rows of your shell
+  rows: 18
+  
+  # Amount of times to repeat GIF
+  # If value is -1, play once
+  # If value is 0, loop indefinitely
+  # If value is a positive number, loop n times
+  repeat: 0
+  
+  # Quality
+  # 1 - 100
+  quality: 100
+  
+  # Delay between frames in ms
+  # If the value is `auto` use the actual recording delays
+  frameDelay: auto
+  
+  # Maximum delay between frames in ms
+  # Ignored if the `frameDelay` isn't set to `auto`
+  # Set to `auto` to prevent limiting the max idle time
+  maxIdleTime: 2000
+  
+  # The surrounding frame box
+  # The `type` can be null, window, floating, or solid`
+  # To hide the title use the value null
+  # Don't forget to add a backgroundColor style with a null as type
+  frameBox:
+    type: floating
+    title: Terminalizer
+    style:
+      border: 0px black solid
+      # boxShadow: none
+      # margin: 0px
+  
+  # Add a watermark image to the rendered gif
+  # You need to specify an absolute path for
+  # the image on your machine or a URL, and you can also
+  # add your own CSS styles
+  watermark:
+    imagePath: null
+    style:
+      position: absolute
+      right: 15px
+      bottom: 15px
+      width: 100px
+      opacity: 0.9
+  
+  # Cursor style can be one of
+  # `block`, `underline`, or `bar`
+  cursorStyle: block
+  
+  # Font family
+  # You can use any font that is installed on your machine
+  # in CSS-like syntax
+  fontFamily: "Monaco, Lucida Console, Ubuntu Mono, Monospace"
+  
+  # The size of the font
+  fontSize: 34
+  
+  # The height of lines
+  lineHeight: 1
+  
+  # The spacing between letters
+  letterSpacing: 0
+  
+  # Theme
+  theme:
+    background: "transparent"
+    foreground: "#afafaf"
+    cursor: "#c7c7c7"
+    black: "#232628"
+    red: "#fc4384"
+    green: "#b3e33b"
+    yellow: "#ffa727"
+    blue: "#75dff2"
+    magenta: "#ae89fe"
+    cyan: "#708387"
+    white: "#d5d5d0"
+    brightBlack: "#626566"
+    brightRed: "#ff7fac"
+    brightGreen: "#c8ed71"
+    brightYellow: "#ebdf86"
+    brightBlue: "#75dff2"
+    brightMagenta: "#ae89fe"
+    brightCyan: "#b1c6ca"
+    brightWhite: "#f9f9f4"
+  
+# Records, feel free to edit them
+records:
+  - delay: 445
+    content: 'Zhiyans-MacBook-Pro:zen zhiyan$ '
+  - delay: 499
+    content: z
+  - delay: 240
+    content: e
+  - delay: 100
+    content: 'n'
+  - delay: 799
+    content: "\r\n"
+  - delay: 11
+    content: "\e[34mgraph_solver\e[39;49m\e[0m\r\n\e[34mgrip\e[39;49m\e[0m\r\n\e[34mhello\e[39;49m\e[0m\r\n\e[34mneovim\e[39;49m\e[0m\r\n\e[34mqr\e[39;49m\e[0m\r\n\e[34mrabbitmq\e[39;49m\e[0m\r\n\e[34mrt-editor-https\e[39;49m\e[0m\r\n\e[34mrt-editor-websocket\e[39;49m\e[0m\r\n\e[34mtulip\e[39;49m\e[0m\r\n\e[34mz\e[39;49m\e[0m\r\n"
+  - delay: 23
+    content: 'Zhiyans-MacBook-Pro:zen zhiyan$ '
+  - delay: 489
+    content: z
+  - delay: 204
+    content: e
+  - delay: 46
+    content: 'n'
+  - delay: 178
+    content: ' '
+  - delay: 159
+    content: 'n'
+  - delay: 53
+    content: e
+  - delay: 63
+    content: w
+  - delay: 188
+    content: '-'
+  - delay: 436
+    content: o
+  - delay: 448
+    content: "\b\e[K"
+  - delay: 246
+    content: p
+  - delay: 124
+    content: r
+  - delay: 82
+    content: o
+  - delay: 218
+    content: j
+  - delay: 84
+    content: e
+  - delay: 75
+    content: c
+  - delay: 231
+    content: t
+  - delay: 859
+    content: "\r\nCreating environment 'new-project'\r\n/Users/zhiyan/.zen/new-project\r\n"
+  - delay: 3681
+    content: "Finished creating environment\r\nUsing 'new-project'\r\n"
+  - delay: 21
+    content: '(new-project) Zhiyans-MacBook-Pro:zen zhiyan$ '
+  - delay: 742
+    content: p
+  - delay: 563
+    content: i
+  - delay: 146
+    content: p
+  - delay: 168
+    content: '3'
+  - delay: 196
+    content: ' '
+  - delay: 220
+    content: l
+  - delay: 162
+    content: i
+  - delay: 47
+    content: s
+  - delay: 62
+    content: t
+  - delay: 76
+    content: "\r\n"
+  - delay: 275
+    content: "Package    Version\r\n---------- -------\r\npip        20.1.1\r\nsetuptools 47.1.0\r\n"
+  - delay: 12
+    content: "\e[33mWARNING: You are using pip version 20.1.1; however, version 20.2.3 is available.\r\nYou should consider upgrading via the '/Users/zhiyan/.zen/new-project/bin/python3 -m pip install --upgrade pip' command.\e[0m\r\n"
+  - delay: 53
+    content: '(new-project) Zhiyans-MacBook-Pro:zen zhiyan$ '
+  - delay: 1252
+    content: z
+  - delay: 1022
+    content: "\b\e[K"
+  - delay: 522
+    content: z
+  - delay: 223
+    content: e
+  - delay: 147
+    content: 'n'
+  - delay: 942
+    content: "\b\e[K"
+  - delay: 164
+    content: "\b\e[K"
+  - delay: 148
+    content: "\b\e[K"
+  - delay: 131
+    content: d
+  - delay: 66
+    content: e
+  - delay: 119
+    content: a
+  - delay: 116
+    content: c
+  - delay: 212
+    content: t
+  - delay: 112
+    content: i
+  - delay: 110
+    content: v
+  - delay: 154
+    content: a
+  - delay: 84
+    content: t
+  - delay: 93
+    content: e
+  - delay: 162
+    content: "\r\n"
+  - delay: 29
+    content: 'Zhiyans-MacBook-Pro:zen zhiyan$ '
+  - delay: 494
+    content: z
+  - delay: 202
+    content: e
+  - delay: 95
+    content: 'n'
+  - delay: 181
+    content: ' '
+  - delay: 346
+    content: r
+  - delay: 56
+    content: e
+  - delay: 102
+    content: m
+  - delay: 124
+    content: o
+  - delay: 68
+    content: v
+  - delay: 81
+    content: e
+  - delay: 183
+    content: ' '
+  - delay: 132
+    content: "\a"
+  - delay: 265
+    content: "\r\ngraph_solver         new-project          rt-editor-websocket\r\ngrip                 qr                   tulip\r\nhello                rabbitmq             z\r\nneovim               rt-editor-https      \r\nZhiyans-MacBook-Pro:zen zhiyan$ zen remove "
+  - delay: 537
+    content: z
+  - delay: 196
+    content: e
+  - delay: 96
+    content: 'n'
+  - delay: 148
+    content: "\a"
+  - delay: 718
+    content: "\b\e[K"
+  - delay: 162
+    content: "\b\e[K"
+  - delay: 142
+    content: "\b\e[K"
+  - delay: 350
+    content: 'n'
+  - delay: 59
+    content: e
+  - delay: 134
+    content: w
+  - delay: 330
+    content: '-project '
+  - delay: 642
+    content: "\r\n"
+  - delay: 90
+    content: "Removed new-project\r\n"
+  - delay: 22
+    content: 'Zhiyans-MacBook-Pro:zen zhiyan$ '
+  - delay: 2476
+    content: z
+  - delay: 192
+    content: e
+  - delay: 76
+    content: 'n'
+  - delay: 204
+    content: "\r\n"
+  - delay: 9
+    content: "\e[34mgraph_solver\e[39;49m\e[0m\r\n\e[34mgrip\e[39;49m\e[0m\r\n\e[34mhello\e[39;49m\e[0m\r\n\e[34mneovim\e[39;49m\e[0m\r\n\e[34mqr\e[39;49m\e[0m\r\n\e[34mrabbitmq\e[39;49m\e[0m\r\n\e[34mrt-editor-https\e[39;49m\e[0m\r\n\e[34mrt-editor-websocket\e[39;49m\e[0m\r\n\e[34mtulip\e[39;49m\e[0m\r\n\e[34mz\e[39;49m\e[0m\r\n"
+  - delay: 23
+    content: 'Zhiyans-MacBook-Pro:zen zhiyan$ '
+  - delay: 428
+    content: "Use \"logout\" to leave the shell.\r\n"
+  - delay: 25
+    content: 'Zhiyans-MacBook-Pro:zen zhiyan$ '
+  - delay: 158
+    content: "logout\r\n"
