@@ -3,6 +3,8 @@
 Zen is an alternative virtualenvwrapper, with a simpler API.
 You can get by with just one commands, `zen`.
 
+<p align="center"><img src="/img/usage.gif?raw=true"/></p>
+
 ## Commands
 
 Most common operations.
