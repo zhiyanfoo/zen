@@ -45,10 +45,9 @@ zen2_create() {
     else
         echo Creating environment "'$1'"
         echo "$zen2_new_env"
-        zen2_current_dir="$(pwd)"
-        cd "$zen2_new_env"
+        pushd "$zen2_pyenv_dir"
         virtualenv "$1"
-        cd "$zen2_current_dir"
+        popd
         echo "Finished creating environment"
     fi
     unset zen2_new_env
