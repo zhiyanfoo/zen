@@ -31,9 +31,16 @@ prefixed) -- this a virtualenv thing.
 ```
 git clone https://github.com/zhiyanfoo/zen.git zen
 cd zen
-./installation.sh
-echo 'alias zen="source /usr/local/bin/zen.sh"' >> $HOME/.bash_profile
+sudo installation.sh
+echo 'alias zen="source /opt/zen/zen"' >> $HOME/.bash_profile
+echo 'source "/opt/zen/zen_completion"' >> $HOME/.bash_profile
+# if you want zen2 support
+echo 'alias zen2='source /opt/zen2/zen2' >> $HOME/.bash_profile
+echo 'source "/opt/zen2/zen2_completion"' >> $HOME/.bash_profile
+source $HOME/tools/zen/completions/zen2_bash_completion
 ```
+
+`sudo` is required for installation into /opt/
 
 # Notes
 
@@ -41,7 +48,7 @@ zen must be run with `source` instead of directly, i.e. with `./`.
 Which is why we add the following alias to your shell configuration file, e.g.
 zshrc/bashrc/bash_profile.
 
-`alias zen="source /usr/local/bin/zen.sh"`
+echo 'alias zen="source /opt/zen/zen"'
 
 The script will attempt the two following simple tasks.
 * Create ".zen" directory in user's home folder. To change the default

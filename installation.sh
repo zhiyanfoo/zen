@@ -1,48 +1,61 @@
-zen_pyenv_dir="$HOME/.zen"
-zen_source_dir=$(dirname $0:h:P)
+#!/usr/bin/env bash
 
-if [ -e $zen_pyenv_dir ]; then
-    echo "$zen_pyenv_dir already exists."
-    echo
-else
-    echo "Creating '$zen_pyenv_dir'"
-    mkdir $zen_pyenv_dir
+set -e
+set -u
+
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root. Required for installation into /opt/"
+  exit
 fi
 
-if [ -e "/usr/local/bin/zen.sh" ]; then
-    echo "zen.sh already exists in /usr/local/bin"
-    echo
-else
-    echo "copying zen over to /usr/local/bin"
-    cp "$zen_source_dir"/zen /usr/local/bin/zen.sh
-fi
+source_dir=$(dirname $0:h:P)
 
-echo "You have to manually create alias"
-echo "'alias zen=\"source /usr/local/bin/zen.sh\"'"
-echo
+bold=$(tput bold)
+normal=$(tput sgr0)
 
-unset zen_pyenv_dir
+function install() {
+  target=$1
+  zen_pyenv_dir="$HOME/.$target"
+  zen_installation_dir="/opt/$target"
+  zen_installation_path="$zen_installation_dir/$target"
+  zen_completion_path="$zen_installation_dir"/"$target"_completion
+  echo "${bold}Installing $target${normal}"
 
-zen_pyenv_dir2="$HOME/.zen2"
+  mkdir -p "/opt/$target"
 
-if [ -e $zen_pyenv_dir2 ]; then
-    echo "$zen_pyenv_dir2 already exists."
-    echo
-else
-    echo "Creating '$zen_pyenv_dir2'"
-    mkdir $zen_pyenv_dir2
-fi
+  if [ -e $zen_pyenv_dir ]; then
+      echo "$zen_pyenv_dir already exists."
+  else
+      echo "Creating '$zen_pyenv_dir'"
+      mkdir $zen_pyenv_dir
+  fi
 
-if [ -e "/usr/local/bin/zen2.sh" ]; then
-    echo "zen2.sh already exists in /usr/local/bin"
-    echo
-else
-    echo "copying zen2 over to local bin"
-    cp "$zen_source_dir"/zen2 /usr/local/bin/zen2.sh
-fi
+  if [ -e "$zen_installation_path" ]; then
+      echo "$target already exists in $zen_installation_dir"
+  else
+      echo "copying $target over to $zen_installation_path"
+      cp "$source_dir"/$target "$zen_installation_path"
+  fi
 
-echo "You have to manually create alias"
-echo "'alias zen2=\"source /usr/local/bin/zen2.sh\"'"
+  if [ -e "$zen_installation_path" ]; then
+      echo "$target already exists in $zen_installation_dir"
+  else
+      echo "copying $target over to $zen_installation_path"
+      cp "$source_dir"/$target "$zen_installation_path"
+  fi
 
-unset zen_pyenv_dir2
-unset zen_source_dir
+  if [ -e "$zen_completion_path" ]; then
+      echo "$target"_completion already exists in "$zen_installation_dir"
+  else
+      echo "copying $target over to $zen_installation_path"
+      cp "$source_dir"/completions/$target "$zen_completion_path"
+  fi
+
+
+  echo "${bold}Manually add the following alias and source completion in bashrc/zshrc${normal}"
+  echo "alias $target='source $zen_installation_path"
+  echo "source \"$zen_completion_path\""
+}
+
+install zen
+install zen2
