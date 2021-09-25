@@ -48,10 +48,7 @@ zen must be run with `source` instead of directly, i.e. with `./`.
 Which is why we add the following alias to your shell configuration file, e.g.
 zshrc/bashrc/bash_profile.
 
-echo 'alias zen="source /opt/zen/zen"'
-
-The script will attempt the two following simple tasks.
-* Create ".zen" directory in user's home folder. To change the default
-  directory that zen uses, you have to change the line
-  `zen_pyenv_dir="$HOME/.zen"` to whatever you prefer.
-* copy zen to /usr/local/bin.
+```
+alias zen="source /opt/zen/zen"
+source "/opt/zen/zen_completion"
+```
